@@ -36,7 +36,7 @@ void count_list(struct staff *list)
         if(p->BasicWage>AverageWage) count++;
         p=p->next;
     }
-    printf("平均基本工资为%.2lf，超过平均基本工资的人数为%d\n",AverageWage,count);
+    printf("平均基本工资为%.2lf，超过平均基本工资的人数为%d。\n",AverageWage,count);
 }
 unsigned int list_length(struct staff *list)
 {

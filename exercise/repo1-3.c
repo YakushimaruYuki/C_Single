@@ -23,21 +23,25 @@ int main()
 /*函数功能：删除链表中等于某给定基本工资的所有结点*/
 struct staff *del_list(struct staff *list)
 {
-    struct staff *p1=list,*p2=list;
+    struct staff *p1,*p2;
     double DeletelWage;
-    prnitf("请输入一个基本工资，以删除给定基本工资的所有职工的信息：");
+    printf("请输入一个基本工资，以删除给定基本工资的所有职工的信息：");
     scanf("%lf",&DeletelWage);
-    while((p1->BasicWage!=DeletelWage)&&(p1->next!=NULL))/*查找要删除的节点*/
+    while(list->BasicWage==DeletelWage)    /*首结点的删除*/
+  	{
+  		list=list->next;
+	}
+    p1=list;
+    while(p1->next!=NULL)                  /*中间结点和尾结点的删除*/
     {
-        p2=p1;p1=p1->next;
+        if(p1->next->BasicWage==DeletelWage)
+        {
+            p2=p1->next;
+            p1->next=p2->next;
+            free(p2);
+        }
+        else p1=p1->next;
     }
-    if(p1->BasicWage==DeletelWage)         /*若找到，则删除*/ 
-    {
-        if(p1==list) list=p1->next;
-        else p2->next=p1->next;
-        free(p1);
-    }
-    else printf("无删除结点。\n");
     return list;
 }
 void print_linked_list(struct staff *list)
