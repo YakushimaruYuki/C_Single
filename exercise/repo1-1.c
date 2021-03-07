@@ -10,35 +10,35 @@ struct staff{
 };
 int main()
 {
-   struct staff *create_linked_list();    /*函数调用声明*/
+   struct staff *create_linked_list();     /*函数调用声明*/
    void max_list(struct staff *list);
    
    max_list(create_linked_list());        
    return 0;
 }
-void max_list(struct staff *list)
-{
+/*函数功能：查找链表中最高基本工资的职工信息，输出查找结果*/
+void max_list(struct staff *list)        
+{ 
     struct staff *p=list;
     double max=p->BasicWage;
-    while(p->next!=NULL)                  /*寻找最高基本工资*/
+    while(p!=NULL)                         /*查找最高基本工资*/
     {
-        p=p->next;
         if(max<p->BasicWage) max=p->BasicWage;
+        p=p->next;
     }
     p=list;
     printf("最高基本工资的职工信息：\n姓名            基本工资\n");
-    while(1)                              /*输出最高工资的职工*/
+    while(p!=NULL)                         /*输出最高工资的职工*/
     {
         if(p->BasicWage==max) printf("%-16s%-16.2lf\n",p->name,p->BasicWage);
-        if(p->next==NULL)break;
         p=p->next;
     }
 }
 struct staff *create_linked_list()         
 {
     int i;
-    struct staff *list=NULL,*p1,*p2=NULL; /*list：头指针，p2：尾指针*/
-    for(i=1;;i++)                         /*建立链表的结点*/
+    struct staff *list=NULL,*p1,*p2=NULL;  /*list：头指针，p2：尾指针*/
+    for(i=1;;i++)                          /*建立链表的结点*/
     {
         if((p1=(struct staff *)malloc(sizeof(struct staff)))==NULL){
             printf("不能成功分配储存块。");
