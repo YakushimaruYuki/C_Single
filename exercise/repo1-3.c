@@ -24,17 +24,17 @@ int main()
 struct staff *del_list(struct staff *list)
 {
     struct staff *p1,*p2;
-    double DeletelWage;
+    double DeleteWage;
     printf("请输入一个基本工资，以删除给定基本工资的所有职工的信息：");
-    scanf("%lf",&DeletelWage);
-    while(list->BasicWage==DeletelWage)    /*首结点的删除*/
+    scanf("%lf",&DeleteWage);
+    while(list->BasicWage==DeleteWage)    /*首结点的删除*/
   	{
   		list=list->next;
 	}
     p1=list;
     while(p1->next!=NULL)                  /*中间结点和尾结点的删除*/
     {
-        if(p1->next->BasicWage==DeletelWage)
+        if(p1->next->BasicWage==DeleteWage)
         {
             p2=p1->next;
             p1->next=p2->next;
