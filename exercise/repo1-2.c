@@ -6,12 +6,12 @@
 #include <malloc.h>
 struct staff{
     char name[50];
-    double BasicWage;
+    double wage;
     struct staff *next;
 };
 int main()
 {
-    struct staff *create_linked_list();    /*函数调用声明*/
+    struct staff *create_linked_list();     /*函数调用声明*/
     void count_list(struct staff *list);
    
     count_list(create_linked_list());
@@ -22,21 +22,21 @@ void count_list(struct staff *list)
 {
     unsigned int list_length(struct staff *list);
     struct staff *p=list;
-    double AverageWage,SumOfWage=0;
+    double avg,sum=0;
     int count=0;
-    while(p!=NULL)                         /*计算平均基本工资*/
+    while(p!=NULL)                          /*计算平均基本工资*/
     {        
-        SumOfWage+=p->BasicWage;
+        sum+=p->wage;
         p=p->next;
     }
-    AverageWage=SumOfWage/list_length(list);
+    avg=sum/list_length(list);
     p=list;
-    while(p!=NULL)                         /*统计链表中超过平均基本工资的人数*/
+    while(p!=NULL)                          /*统计链表中超过平均基本工资的人数*/
     {
-        if(p->BasicWage>AverageWage) count++;
+        if(p->wage>avg) count++;
         p=p->next;
     }
-    printf("平均基本工资为%.2lf，超过平均基本工资的人数为%d。\n",AverageWage,count);
+    printf("平均基本工资为%.2lf，超过平均基本工资的人数为%d。\n",avg,count);
 }
 unsigned int list_length(struct staff *list)
 {
@@ -52,19 +52,19 @@ unsigned int list_length(struct staff *list)
 struct staff *create_linked_list()         
 {
     int i;
-    struct staff *list=NULL,*p1,*p2=NULL;  /*list：头指针，p2：尾指针*/
-    for(i=1;;i++)                          /*建立链表的结点*/
+    struct staff *list=NULL,*p1,*p2=NULL;   /*list：头指针，p2：尾指针*/
+    for(i=1;;i++)                           /*建立链表的结点*/
     {
         if((p1=(struct staff *)malloc(sizeof(struct staff)))==NULL){
             printf("不能成功分配储存块。");
             exit(0);
         }                      
-        p1->next=NULL;                     /*令新节点的指针域为NULL*/      
+        p1->next=NULL;                      /*令新节点的指针域为NULL*/      
         printf("请输入第%d位员工姓名、基本工资：（当输入基本工资为0时，表示输入结束）\n",i);     
-        scanf("%s%lf",&p1->name,&p1->BasicWage);
-        if(p1->BasicWage==0)break;         /*当输入基本工资为0时，表示输入结束*/
-        if(i==1) list=p1;else p2->next=p1; /*在表尾连入新节点*/
-        p2=p1;                             /*p2指向新的表尾结点*/
+        scanf("%s%lf",&p1->name,&p1->wage);
+        if(p1->wage==0)break;          /*当输入基本工资为0时，表示输入结束*/
+        if(i==1) list=p1;else p2->next=p1;  /*在表尾连入新节点*/
+        p2=p1;                              /*p2指向新的表尾结点*/
     }
     return list;
 }

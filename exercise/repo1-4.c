@@ -20,9 +20,11 @@ int main()
     printf("第一链表：\n");  
     list1=create_linked_list();             /*建立第一链表，并升序排序*/
     list1=sort_linked_list(list1);  
+    
     printf("\n第二链表：\n"); 
     list2=create_linked_list();             /*建立第二链表，并升序排序*/
     list2=sort_linked_list(list2);          
+    
     list3=merge_linked_list(list1,list2);   /*合并两链表，并升序排序*/
     list3=sort_linked_list(list3);
     print_linked_list(list3);               /*输出合并后的链表*/
@@ -31,20 +33,20 @@ int main()
 /*函数功能：升序排序链表（用选择排序法）*/
 struct student *sort_linked_list(struct student *list)
 {
-    struct student *p1,*p2=list;       /*p1:前指针，p2：后指针*/    
-    double min,TempScore;              /*TempScore和TempName：用于交换的临时变量*/    
+    struct student *p1,*p2=list;  /*p1:前指针，p2：后指针*/    
+    double min,TempScore;         /*TempScore和TempName：用于交换的临时变量*/    
     char TempName[50];
     while(p2->next!=NULL)
     {
-        p1=p2->next;                   /*令p1在p2的下一个结点*/
-        min=p2->score;                 /*先假定p2->score最小*/
-        while(p1!=NULL)                /*p1向后遍历链表，找到本轮的最小值*/
+        p1=p2->next;              /*令p1在p2的下一个结点*/
+        min=p2->score;            /*先假定p2->score最小*/
+        while(p1!=NULL)           /*p1向后遍历链表，找到本轮的最小值*/
         {
             if(p1->score<min) min=p1->score;
             p1=p1->next;
         }
         p1=p2->next;                   
-        if(min<p2->score)              /*若本轮的最小值比p2->score更小，交换两者的数据域*/
+        if(min<p2->score)         /*若本轮的最小值比p2->score更小，交换两者的数据域*/
         {
             while(p1->score!=min) p1=p1->next;
             TempScore=p2->score;p2->score=p1->score;p1->score=TempScore;
@@ -52,7 +54,7 @@ struct student *sort_linked_list(struct student *list)
             strcpy(p2->name,p1->name);
             strcpy(p1->name,TempName);
         }
-        p2=p2->next;                   /*p2向下一个结点移动*/
+        p2=p2->next;              /*p2向下一个结点移动*/
     }
     return list;
 }
