@@ -27,6 +27,7 @@ int main()
     
     list3=merge_linked_list(list1,list2);   /*合并两链表，并升序排序*/
     list3=sort_linked_list(list3);
+    
     print_linked_list(list3);               /*输出合并后的链表*/
     return 0;
 }
@@ -73,7 +74,7 @@ struct student *merge_linked_list(struct student *list1,struct student *list2)
 void print_linked_list(struct student *list)
 {
     struct student *p=list;
-    printf("学生信息：\n姓名            成绩\n");
+    printf("\n学生信息：\n姓名            成绩\n");
     while(p!=NULL)
     {
         printf("%-16s%-16.2lf\n",p->name,p->score);
